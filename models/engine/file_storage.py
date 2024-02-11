@@ -37,13 +37,12 @@ class FileStorage:
             json.dump(objdict, f)
 
     def reload(self):
-        """deserializes the JSON file to __objects."""
+        """Deserializes the JSON file to __objects."""
         try:
-            with open(FileStorage.__file_path) as file:
-                obj_key = json.load(file)
-                for key in obj_key.values():
-                    class_name = key["__class__"]
-                    del key["__class"]
-                    self.new(eval(class_name)(**key))
+            with open(self.__file_path, 'r') as file:
+                obj_dict = json.load(file)
+                for key, value in obj_dict.items():
+                    class_name, obj_id = key.split('.')
+                    self.__objects[key] = eval(class_name)(**value)
         except FileNotFoundError:
-            return
+            pass

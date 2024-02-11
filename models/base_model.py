@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Define BaseModel Class."""
+import models
 from uuid import uuid4
 from datetime import datetime
-from file_storage import FileStorage
 
 class BaseModel:
     """The Basemodel of the HBnB Project."""
@@ -14,8 +14,8 @@ class BaseModel:
             **kwargs (dict): Key/value pairs of attributes."""
 
         self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
 
         if len(kwargs) != 0:

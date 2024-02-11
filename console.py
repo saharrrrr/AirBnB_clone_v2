@@ -2,8 +2,17 @@
 
 import sys
 import cmd
-from base_model import BaseModel
-from file_storage import FileStorage
+import re
+from shlex import split
+from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
+
 
 class HBNBCommand(cmd.Cmd):
 
@@ -19,13 +28,13 @@ class HBNBCommand(cmd.Cmd):
         }
 
     def emptyline(self):
-       """Do nothing upon receiving an empty line."""
-       pass
+        """Do nothing upon receiving an empty line."""
+        pass
 
     def do_quit(self, arg):
         """quit command to exit the program"""
         return True
-    
+
     def do_EOF(self, arg):
         """EOF to exit the program."""
         print("")
@@ -39,10 +48,10 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
-        
+
         # class_name = sys.argv[1]
         elif args[0] not in HBNBCommand.our_classes:
-                print("** class doesn't exist **")
+            print("** class doesn't exist **")
         else:
             new_instance = BaseModel()
             new_instance.save()
@@ -58,9 +67,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif arg[0] not in ["BaseModel"]:
             print("** class doesn't exist **")
-        elif arg[1] == None:
+        elif arg[1] is None:
             print("** instance id missing **")
-        elif pass
+        elif "{}.{}".format(arg[0], arg[1]) not in objdict:
+            print("** no instance found **")
+        else:
+            print(objdict["{}.{}".format(arg[0], arg[1])])
 
     def do_destroy(self, arg):
         """Usage: destroy <class> <id> or <class>.destroy(<id>)
@@ -85,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
         Display string representations of all instances of a given class.
         If no class is specified, displays all instantiated objects.
         """
-        
+
         args = arg.split()
         if len(args) == 0:
             print("** class doesn't exist **")
@@ -105,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
         Update a class instance of a given id by adding or updating
         a given attribute key/value pair or dictionary.
         """
-        
+
         args = arg.split()
         obj_dict = storage.all()
         if len(args) == 0:
@@ -123,11 +135,11 @@ class HBNBCommand(cmd.Cmd):
             return False
         if len(args) == 3:
             try:
-                 type(eval(args[2])) != dict
+                type(eval(args[2])) != dict
             except NameError:
                 print("** value missing **")
                 return False
-        
+
         if len(args) == 4:
             obj = obj_dict["{}.{}".format(args[0], args[1])]
             if args[2] in obj.__class__.__dict__.keys():
@@ -150,14 +162,13 @@ class HBNBCommand(cmd.Cmd):
         """count <class> or <class>.count()
         Retrieve the number of instances of a given class.
         """
-        
+
         args = arg.split()
         count = 0
         for obj in storage.all().values():
             if args[0] == obj.__class__.__name__:
                 count += 1
         print(count)
-          
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@
 """Define the Review class."""
 from models.base_model import BaseModel
 
+
 class Review(BaseModel):
     """Represent a review.
 

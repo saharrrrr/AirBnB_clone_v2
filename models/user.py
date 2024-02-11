@@ -2,9 +2,10 @@
 
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """ this Class Represents User Informations.
-    
+
     Attributes:
     Email => user email
     Password => user password

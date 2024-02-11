@@ -11,7 +11,7 @@ from models.review import Review
 
 
 class FileStorage:
-    """class that serializes instances to a JSON file 
+    """class that serializes instances to a JSON file
     and deserializes JSON file to instances.
 
     Attributes:
@@ -25,7 +25,7 @@ class FileStorage:
     def all(self):
         """returns the dictionary __objects."""
         return FileStorage.__objects
-    
+
     def new(self, obj):
         """ sets in __objects the obj with key."""
         obj_key = f"{obj.__class__.__name__}.{obj.id}"

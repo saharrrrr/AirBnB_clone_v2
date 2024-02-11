@@ -4,6 +4,7 @@ import models
 from uuid import uuid4
 from datetime import datetime
 
+
 class BaseModel:
     """The Basemodel of the HBnB Project."""
 
@@ -29,7 +30,7 @@ class BaseModel:
 
     def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
-        
+
         cls_name = self.__class__.__name__
         print(f"{cls_name} {self.id} {self.__dict__}")
 

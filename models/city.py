@@ -2,6 +2,7 @@
 """Define the city class."""
 from models.base_model import BaseModel
 
+
 class City(BaseModel):
     """Repersent the city.
     Attributes:
@@ -10,4 +11,3 @@ class City(BaseModel):
     """
     state_id = ""
     name = ""
-    

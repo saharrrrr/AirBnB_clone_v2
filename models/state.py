@@ -2,8 +2,9 @@
 """Define the state class."""
 from models.base_model import BaseModel
 
+
 class State(BaseModel):
-    """Represent the state 
+    """Represent the state
     Attributes:
     name: the state name.
     """

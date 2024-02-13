@@ -30,6 +30,13 @@ class HBNBCommand(cmd.Cmd):
         "Review"
     }
 
+    def defult(self, arg):
+        arg_dict = {
+                "all": self.do_all,
+                "show": self.do_show,
+                "destroy": self.do_destroy
+                }
+
     def empty_line(self):
         """Do nothing upon receiving an empty line."""
         pass

@@ -2,6 +2,7 @@
 """Defines the HBNB console."""
 import cmd
 import json
+import re
 from shlex import split
 from models import storage
 from models.base_model import BaseModel
@@ -160,6 +161,14 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
+
+    def do_count(self, arg):
+        args = arg.split()
+        count = 0
+        for obj in storage.all().values():
+            if args[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
 
 
 if __name__ == '__main__':

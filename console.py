@@ -5,6 +5,7 @@ import json
 from shlex import split
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +15,7 @@ class HBNBCommand(cmd.Cmd):
         prompt (str): The command prompt
         """
     prompt = "(hbnb) "
-    __classes = {
+    classes = {
         "BaseModel",
         "User",
         "State",
@@ -42,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
-        elif args[0] not in "BaseModel":
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
             new_instance = BaseModel()
@@ -55,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(args) == 0:
             print("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
@@ -70,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(args) == 0:
             print("** class name missing **")
-        elif args[0] != "BaseModel":
+        elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
@@ -83,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all string representation of all instances."""
         args = arg.split()
-        if len(args) > 0 and args[0] != "BaseModel":
+        if len(args) > 0 and args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
             objl = []
@@ -100,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
         obj_dict = storage.all()
         if len(args) == 0:
             print("** class name missing **")
-        if args[0] != "BaseModel":
+        if args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         if len(args) == 1:
             print("** instance id missing **")

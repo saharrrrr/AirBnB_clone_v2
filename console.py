@@ -31,6 +31,10 @@ class HBNBCommand(cmd.Cmd):
         "Review"
     }
 
+    def emptyline(self):
+        """Do nothing upon receiving an empty line."""
+        pass
+
     def defult(self, arg):
         """Default behavior for cmd module when input is invalid."""
         arg_dict = {
@@ -51,10 +55,6 @@ class HBNBCommand(cmd.Cmd):
                     return argdict[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
-
-    def emptyline(self):
-        """Do nothing upon receiving an empty line."""
-        pass
 
     def do_quit(self, arg):
         """Quit command to exit the program"""

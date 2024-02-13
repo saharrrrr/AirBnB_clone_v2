@@ -163,6 +163,7 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_count(self, arg):
+        """retrieve the number of instances of a given class"""
         args = arg.split()
         count = 0
         for obj in storage.all().values():

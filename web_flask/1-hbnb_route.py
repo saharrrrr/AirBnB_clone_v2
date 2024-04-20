@@ -10,7 +10,7 @@ def Hello_hbnb():
     """ display “Hello HBNB!”"""
     return("Hello HBNB")
 
-@skills_app.route("/hbnb")
+@skills_app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """ display “HBNB” """
     return("HBNB")

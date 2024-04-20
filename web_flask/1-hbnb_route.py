@@ -5,10 +5,12 @@ listening on 0.0.0.0, port 5000
 from flask import Flask
 skills_app = Flask(__name__)
 
+
 @skills_app.route("/", strict_slashes=False)
 def Hello_hbnb():
     """ display “Hello HBNB!”"""
     return("Hello HBNB")
+
 
 @skills_app.route("/hbnb", strict_slashes=False)
 def hbnb():
